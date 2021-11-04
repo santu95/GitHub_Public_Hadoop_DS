@@ -1,0 +1,81 @@
+$./startHadoop.sh
+
+$hive
+
+
+hive>CREATE DATABASE IF NOT EXISTS PGA17;
+
+hive>show databases;
+
+hive>set hive.cli.print.header=true; 
+
+hive>use PGA17;
+
+hive>CREATE TABLE IF NOT EXISTS employee ( eid int, name String,
+salary String, designation String, dept String)
+COMMENT 'Employee details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+TBLPROPERTIES("skip.header.line.count"="1");
+
+
+hive>show tables;
+
+Open another terminal
+
+$cd demo_1
+$ls *.txt
+
+Check that employee.txt available or not!
+
+
+hive>LOAD DATA LOCAL INPATH '/home/hduser/demo_1/employee1.txt'
+OVERWRITE INTO TABLE employee;
+
+hive>ALTER TABLE employee CHANGE salary salary Double;
+hive>desc employee;
+
+Show department wise total sal,total emp order by total sal desc.
+hive>
+
+
+hive>create view sal_dept as SELECT Dept,sum(salary) as Total_sal, count(*) as total_emp FROM employee GROUP BY DEPT order by Total_sal desc;
+
+hive>show tables;
+
+
+Hive>CREATE TABLE IF NOT EXISTS orders( oid int, o_date date, CUSTOMER_ID int, amount int)
+COMMENT 'Order details'
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+TBLPROPERTIES("skip.header.line.count"="1");
+
+hive>LOAD DATA LOCAL INPATH '/home/hduser/demo_1/orders.txt' OVERWRITE INTO TABLE orders;
+
+hive>SELECT e.eid, e.name,sum(o.AMOUNT) as Total,e.dept FROM employee e JOIN ORDERS o ON (e.eid = o.CUSTOMER_ID) group by e.eid,e.name,e.dept;
+
+
+hive>SELECT e.eid,e.name, sum(o.AMOUNT) FROM employee e LEFT OUTER JOIN ORDERS o ON (e.eid = o.CUSTOMER_ID) group by e.NAME,e.eid;
+
+1201	Gopal	3000
+1204	Kiran	NULL
+1202	Manisha	NULL
+1203	Masthan	3060
+
+
+Hive Server2:
+
+$hive --service hiveserver2 &
+
+$beeline -u "jdbc:hive2://localhost:10000/default;AuthMech=0;transportMode=binary"
+
+
+
+
+
+
+
