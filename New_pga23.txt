@@ -1,0 +1,54 @@
+#Clone your GitHub Repository...
+git clone https://github.com/santu95/GitHub_Public_Hadoop_DS.git
+
+
+#Set your Name and Mail ID (not Global)
+git config user.email "santu95@yahoo.com"
+git config user.name "Santanu Bhattacharjee"
+
+
+echo "Temp File for testing" >>PGA23_2.txt
+
+#It will show the Reprository status...
+git status
+
+
+#Add this file into the Staging...
+git add PGA23_2.txt
+
+
+
+#Move this file into the Local Repository...
+git commit -m "adding a new file for PGA23" PGA23_2.txt
+
+
+#It will display the history of log comments of the file...
+git log PGA23_2.txt
+
+git log
+
+git push
+
+ssh-keygen -t rsa -b 4096 -C "santu95@yahoo.com"
+
+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDZJv1Io7EMbdDIuUUJ89v0vQXiuj77TyR3aVxqHmGuuKofKcnEpWVbbiFvoeG4wHRJwX4ScJheAl36+EBl12P2YHnv/PIh0FdFmD78umMeaO2tzh5au34QlU+6ntlV2sUQ6nMVsCtCgYG1lJ93ZLAkR9RpIj5/m9Dm+p1bioBQn3q+O14dsHcppQCntQmofj3xQ3EHOknmt1cTLx6nLvsW6ouRglyGpRuY0MI9teMNRCmdIIMALm5aNynqDtl+HNeP7RFV6qnjQqfchcNUaP2M5JKNEaokoCZfEO3+siag48SpGziZa5a82G33lRTiZcWG5bCuoD/IaRU2k1guttJXP7AJJvLxLK7aUbBoUVuO+IssMfLTbKFSCWjWSJzX3I90lFkVKSwPoeaUqLnKQDXFZw36iJ+l9Bi5GFUC6qy7XHmJNRaKAUyiQXsSGxWysmKLMuwjiRAJ4aAoXfRJQRF5xEPmZ9a2/ulXmq906gILqV/OCb/a56bOR8AJ4A4hp3MnQyyicfuZy6e2+FnNTZk95QbnWb/gW+X70PQzCfTjZfrrGB0Kom6d+z+ql6zoOPmjpOIDga57I/bCD75yHYyTPgPIM5eDeGjojX5ZZ28XJGxK9OXbEAIMENsNlxYp6Se+WyMC2Dt434QfcxCvgr6bbtO442dj6unMrZkx2Fs6Uw== santu95@yahoo.com
+
+
+#Start SSH Agent, add the RSA file!
+eval "$(ssh-agent -s)"
+ssh-add pga23_rsa
+
+git remote set-url origin git@github.com:santu95/GitHub_Public_Hadoop_DS.git
+
+git push
+
+
+
+
+
+
+
+
+
